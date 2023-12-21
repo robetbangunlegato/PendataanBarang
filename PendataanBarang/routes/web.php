@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\BarangMasukController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::resource('dashboard', DashboardController::class);
+Route::resource('barang', BarangController::class);
+Route::resource('barangMasuk', BarangMasukController::class);
