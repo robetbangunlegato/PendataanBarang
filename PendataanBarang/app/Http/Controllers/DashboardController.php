@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Jenssegers\Date\Date;
 
 class DashboardController extends Controller
 {
@@ -12,8 +14,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
-        return view('sidebar');
+
+        // Mengambil waktu saat ini
+        $waktuSaatIni = Date::now();
+
+        // Mengubah format tanggal ke 'sabtu, 23 Desember 2023'
+        $formatTanggal = $waktuSaatIni->format('l, j F Y');
+
+        return view('dashboard')->with('waktu', $formatTanggal);
     }
 
     /**

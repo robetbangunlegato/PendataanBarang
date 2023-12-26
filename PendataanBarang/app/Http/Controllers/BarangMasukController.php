@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Transaksi;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class BarangMasukController extends Controller
 {
@@ -15,8 +16,8 @@ class BarangMasukController extends Controller
      */
     public function index()
     {
-        //
-        $transaksis = Transaksi::all();
+        //ambil data yang hanya transaksi masuk
+        $transaksis = Transaksi::where('jenis_transaksi', 'masuk')->get();
         return view('BarangMasuk.index')->with('transaksis', $transaksis);
     }
 
@@ -37,26 +38,24 @@ class BarangMasukController extends Controller
     {
         //
         $jenis_transaksi='masuk';
-
-        
+        $user_id = Auth::id();
 
         $Validasi= $request->validate([
             'Jumlah' => 'required',
-            'Nama' => 'required'
+            'Idbarang' => 'required'
 
         ]);
 
-
-        DB::table('barangs')->where('id', $Validasi['Nama'])->increment('jumlah', $Validasi['Jumlah']);        
+        DB::table('barangs')->where('id', $Validasi['Idbarang'])->increment('jumlah', $Validasi['Jumlah']);        
 
         $transaksis = new Transaksi();
-        $transaksis->jumlah=$Validasi['Jumlah'];
-        $transaksis->jenis_transaksi=$jenis_transaksi;
+        $transaksis->jumlah = $Validasi['Jumlah'];
+        $transaksis->jenis_transaksi = $jenis_transaksi;
+        $transaksis->users_id = $user_id;
+        $transaksis->barangs_id = $Validasi['Idbarang'];
 
         $transaksis->save();
 
-
-        
         $request->session()->flash('info','Jumlah barang berhasil ditambah!');
         return redirect()->route('barangMasuk.index');
 

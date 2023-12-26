@@ -14,9 +14,8 @@
         </div>
         {{-- alert --}}
         @if (session()->has('info'))
-            <div class="alert alert-success alert-dismissible fade show mt-3 text-start" role="alert">
+            <div class="alert alert-success alert-dismissible fade show mt-3 text-start" role="alert" id="myAlert">
                 {{ session()->get('info') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <div class="mt-4">
@@ -87,9 +86,12 @@
                 </tbody>
             </table>
         </div>
-
-
-
     </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            // Tunggu 3 detik, lalu sembunyikan alert dengan efek fade
+            $("#myAlert").delay(3000).fadeOut("slow");
+        });
+    </script>
 @endsection

@@ -27,6 +27,8 @@
     <script src="{{ asset('coreui.bundle.min.js') }}"></script>
     <script src="{{ asset('simplebar.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -40,39 +42,62 @@
                 class="sidebar-brand-narrow rounded-circle">
         </div>
         <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-            <li class="nav-item"><a class="nav-link" href="index.html">
+            <li class="nav-item"><a class="nav-link" href="{{ url('dashboard') }}">
                     <svg class="nav-icon">
                         <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer') }}"></use>
                     </svg> Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="colors.html">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-people') }}"></use>
-                    </svg> Kelola Pengguna</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ url('barang') }}">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-playlist-add') }}"></use>
-                    </svg> Tambah Barang</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="{{ url('barangMasuk') }}">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-input') }}"></use>
-                    </svg> Barang Masuk</a>
-            </li>
-            <li class="nav-group"><a class="nav-link" href="#">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-account-logout') }}"></use>
-                    </svg> Barang keluar</a>
-            </li>
-            <li class="nav-group"><a class="nav-link" href="#">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-spreadsheet') }}"></use>
-                    </svg> Laporan</a>
-            </li>
 
+            @if (auth()->user()->role == 'admin')
+                <li class="nav-item"><a class="nav-link" href="{{ url('pengguna') }}">
+                        <svg class="nav-icon">
+                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-people') }}"></use>
+                        </svg> Kelola Pengguna</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('barang') }}">
+                        <svg class="nav-icon">
+                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-playlist-add') }}"></use>
+                        </svg> Tambah Barang</a>
+                </li>
+            @elseif(auth()->user()->role == 'gudang')
+                <li class="nav-item"><a class="nav-link" href="{{ url('barangMasuk') }}">
+                        <svg class="nav-icon">
+                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-input') }}"></use>
+                        </svg> Barang Masuk</a>
+                </li>
+                <li class="nav-group"><a class="nav-link" href="{{ url('barangKeluar') }}">
+                        <svg class="nav-icon">
+                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-account-logout') }}">
+                            </use>
+                        </svg> Barang keluar</a>
+                </li>
+            @elseif(auth()->user()->role == 'direktur')
+                <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                        <svg class="nav-icon">
+                            <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-spreadsheet') }}"></use>
+                        </svg> Laporan</a>
+                    <ul class="nav-group-items">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('indexhari') }}"><span
+                                    class="nav-icon"></span>
+                                Harian</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('indexbulan') }}"><span
+                                    class="nav-icon"></span>
+                                Bulanan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('laporan') }}"><span
+                                    class="nav-icon"></span>
+                                Tahunan</a></li>
+                    </ul>
+                </li>
+            @endif
         </ul>
-
         <div class="mb-2" style="display: flex; justify-content: center; align-items: center;">
-            <button class="btn btn-danger text-white">Keluar</button>
+            <form method="POST" action="{{ route('logout') }}" class="nav-link">
+                @csrf
+                <a href="route('logout')"
+                    onclick="event.preventDefault();
+                                                this.closest('form').submit();"
+                    class="btn btn-danger text-white btn-block">{{ __('Keluar') }}
+                </a>
+            </form>
         </div>
         {{-- <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button> --}}
     </div>

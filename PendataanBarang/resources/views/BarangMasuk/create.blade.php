@@ -29,7 +29,7 @@
                         <label for="inputPassword6" class="col-form-label">Nama Barang </label>
                     </div>
                     <div class="col-auto">
-                        <select class="form-select" name="Nama">
+                        <select class="form-select" name="Idbarang">
                             <option selected value="">Pilih...</option>
                             @foreach ($barangs as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_barang }} - ID : {{ $item->id }}

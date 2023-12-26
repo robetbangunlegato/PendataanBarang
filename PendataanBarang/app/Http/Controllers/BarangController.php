@@ -79,7 +79,6 @@ class BarangController extends Controller
     {
         //
         
-        
         $Validasi= $request->validate([
             'Nama' => 'required',
             'Jenis' => 'required',
