@@ -1,6 +1,6 @@
 @extends('sidebar')
 @section('content')
-    <div class="alert alert-primary text-end" role="alert">
+    <div class="alert alert-success text-end" role="alert">
         <svg class="icon icon-lg" style="margin-right: 1%">
             <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-calendar') }}"></use>
         </svg>{{ $waktu }}
@@ -17,7 +17,7 @@
                     <p class="card-text">Nama : {{ auth()->user()->name }}</p>
                     <p class="card-text">Id : {{ auth()->user()->id }}</p>
                     <p class="card-text">Jabatan : {{ auth()->user()->role }}</p>
-                    <p class="card-text">No_telp : {{ auth()->user()->telp_number }}</p>
+                    <p class="card-text">Nomor telpon : {{ auth()->user()->telp_number }}</p>
                 </div>
             </div>
         </div>

@@ -6,14 +6,15 @@
                 <i class="bi bi-people-fill" style="font-size: 2em"></i>
             </div>
             <div class="col-6 text-start">
-                <h3>Tambah Data Pengguna</h3>
+                <h3>Ubah Data Pengguna</h3>
             </div>
             <div class="col-4">
             </div>
             <hr class="mt-3 mb-3">
 
-            {{-- Formulir tambah pengguna --}}
-            <form action="{{ route('pengguna.store') }}" method="POST">
+            {{-- Formulir ubah pengguna --}}
+            <form action="{{ route('pengguna.update', [$users->id]) }}" method="POST">
+                @method('PATCH')
                 @csrf
                 <div class="row g-3 align-items-center mt-3">
                     <div class="col-auto">

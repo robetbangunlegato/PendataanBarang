@@ -42,8 +42,8 @@ class BarangMasukController extends Controller
 
         $Validasi= $request->validate([
             'Jumlah' => 'required',
-            'Idbarang' => 'required'
-
+            'Idbarang' => 'required',
+            'Suplier' => 'required'
         ]);
 
         DB::table('barangs')->where('id', $Validasi['Idbarang'])->increment('jumlah', $Validasi['Jumlah']);        
@@ -53,6 +53,7 @@ class BarangMasukController extends Controller
         $transaksis->jenis_transaksi = $jenis_transaksi;
         $transaksis->users_id = $user_id;
         $transaksis->barangs_id = $Validasi['Idbarang'];
+        $transaksis->suplier = $Validasi['Suplier'];
 
         $transaksis->save();
 

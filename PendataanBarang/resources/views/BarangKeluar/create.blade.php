@@ -20,9 +20,8 @@
 
             {{-- alert --}}
             @if (session()->has('info'))
-                <div class="alert alert-danger alert-dismissible fade show mt-3 text-start" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show mt-3 text-start" role="alert" id="myAlert">
                     {{ session()->get('info') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
 
@@ -61,6 +60,14 @@
                         <input type="number" name="Jumlah" class="form-control" min="0">
                     </div>
                 </div>
+                <div class="row g-3 align-items-center mt-3">
+                    <div class="col-auto">
+                        <label for="berat" class="col-form-label">Suplier </label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" name="Suplier" class="form-control">
+                    </div>
+                </div>
                 <div class="col-12">
                     <div class="col-4">
                         <button class="btn btn-primary mt-4" type="submit">Simpan</button>
@@ -70,4 +77,10 @@
 
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            // Tunggu 3 detik, lalu sembunyikan alert dengan efek fade
+            $("#myAlert").delay(3000).fadeOut("slow");
+        });
+    </script>
 @endsection

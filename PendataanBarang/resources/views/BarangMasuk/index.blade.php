@@ -29,6 +29,7 @@
                         <th><strong>Jumlah</strong></th>
                         <th><strong>Petugas</strong></th>
                         <th><strong>Transaksi</strong></th>
+                        <th><strong>Suplier</strong></th>
                     </tr>
                 </thead>
                 <tbody class="align-middle">
@@ -47,6 +48,7 @@
                             <td>{{ $item->jumlah }}</td>
                             <td>{{ $item->users->name }}</td>
                             <td>{{ $item->jenis_transaksi }}</td>
+                            <td>{{ $item->suplier }}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -21,7 +21,7 @@ use App\Http\Controllers\BarangKeluarController;
 */
 
 Route::get('/', function () {
-    return view('sidebar');
+    return view('auth.login');
 });
 
 // Route::get('/dashboard', function () {

@@ -10,9 +10,6 @@
             </div>
             <div class="col-4">
             </div>
-            {{-- <hr class="mt-3 mb-3"> --}}
-
-
             <form action="{{ route('barangMasuk.store') }}" method="POST">
                 @csrf
                 <div class="row g-3 align-items-center mt-4">
@@ -24,6 +21,7 @@
                             value="{{ \Carbon\Carbon::now()->toDateString() }}">
                     </div>
                 </div>
+
                 <div class="row align-items-center g-3 mt-2">
                     <div class="col-auto">
                         <label for="inputPassword6" class="col-form-label">Nama Barang </label>
@@ -38,12 +36,22 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="row g-3 align-items-center mt-3">
                     <div class="col-auto">
                         <label for="berat" class="col-form-label">Jumlah </label>
                     </div>
                     <div class="col-auto">
                         <input type="number" name="Jumlah" class="form-control" min="0">
+                    </div>
+                </div>
+
+                <div class="row g-3 align-items-center mt-3">
+                    <div class="col-auto">
+                        <label for="berat" class="col-form-label">Suplier </label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" name="Suplier" class="form-control">
                     </div>
                 </div>
                 <div class="col-12">

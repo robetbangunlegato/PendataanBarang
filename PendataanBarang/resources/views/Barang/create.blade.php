@@ -40,7 +40,7 @@
                         <label for="berat" class="col-form-label">Berat Pupuk (Kg) : </label>
                     </div>
                     <div class="col-auto">
-                        <input type="number" id="berat" name="Berat" class="form-control">
+                        <input type="number" id="berat" name="Berat" class="form-control" min="0">
                     </div>
                 </div>
                 <div class="col-12">

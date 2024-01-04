@@ -77,6 +77,22 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $Validasi=$request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'jabatan' => 'required',
+            'notelp'=> 'required'
+        ]);
+
+        $users = User::find($id);
+        $users->name = $Validasi['name'];
+        $users->email = $Validasi['email'];
+        $users->role = $Validasi['jabatan'];
+        $users->telp_number = $Validasi['notelp'];
+        $users->update();
+
+        $request->session()->flash('info', 'Data pengguna berhasil diubah');
+        return redirect()->route('pengguna.index');
     }
 
     /**

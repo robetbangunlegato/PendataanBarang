@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('jenis_transaksi');
             $table->integer('jumlah');
             $table->string('waktu');
+            $table->string('suplier');
         });
     }
 

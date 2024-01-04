@@ -42,7 +42,8 @@ class BarangKeluarController extends Controller
 
         $Validasi= $request->validate([
             'Jumlah' => 'required',
-            'Idbarang' => 'required'
+            'Idbarang' => 'required',
+            'Suplier' => 'required'
 
         ]);
 
@@ -59,7 +60,8 @@ class BarangKeluarController extends Controller
         $transaksis->jenis_transaksi = $jenis_transaksi;
         $transaksis->users_id = $user_id;
         $transaksis->barangs_id = $Validasi['Idbarang'];
-
+        $transaksis->suplier = $Validasi['Suplier'];
+        
         $transaksis->save();
 
         $request->session()->flash('info','Jumlah barang berhasil dikurangi!');
